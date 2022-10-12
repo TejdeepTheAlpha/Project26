@@ -13,6 +13,30 @@ class PlayerArrow {
     World.add(world, this.body);
   }
 
+  /* remove(index) {
+    this.isRemoved = false;
+    Matter.World.remove(world, this.body);
+    delete playerArrows[index];
+  } */
+
+   remove(index) {
+    this.isRemoved = true;
+    Matter.World.remove(world, this.body);
+    delete playerArrows[index];
+  } 
+
+  // remove(index) {
+   // this.isRemoved = true;
+  //  Matter.World.remove(this.body);
+  //  delete playerArrows[index];
+  //} 
+
+ //remove(index) {
+  //  this.isRemoved = true;
+  //  Matter.World.remove(world, this.body);
+  //  delete playerArrows[];
+ // } 
+
   shoot(archerAngle) {
     this.velocity = p5.Vector.fromAngle(archerAngle + PI / 2);
     this.velocity.mult(55);
@@ -27,11 +51,7 @@ class PlayerArrow {
 
   display() {
     var tmpAngle;
-    if (this.body.velocity.y === 0) {
-      tmpAngle = this.archerAngle + PI / 2;
-    } else {
-      tmpAngle = Math.atan(this.body.velocity.y / this.body.velocity.x);
-    }
+    
 
     Matter.Body.setAngle(this.body, tmpAngle);
 
